@@ -1,39 +1,43 @@
-import React from 'react';
-import styled from 'styled-components'
-import { FormProps } from './interface.d'
+import React from "react";
+import styled from "styled-components";
+
+import { FormProps } from "./interface.d";
 
 const Form = ({ ...props }: FormProps) => {
-  const {
-    formState,
-    setFormState
-  } = props;
+  const { formState, setFormState } = props;
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     const newState = {
       ...formState,
-      [name]: value
-    }
+      [name]: value,
+    };
     setFormState(newState);
-  }
+  };
 
   // use hook way https://dev.to/damcosset/refactor-a-form-with-react-hooks-and-usestate-1lfa
   return (
     <StyledForm>
       <Input>
         <label htmlFor="seconds">Seconds</label>
-        <input id="seconds" type="number" name="seconds" onChange={handleOnChange} value={formState.number}/>
+        <input
+          id="seconds"
+          type="number"
+          name="seconds"
+          onChange={handleOnChange}
+          value={formState.number}
+        />
       </Input>
     </StyledForm>
-  )
-}
+  );
+};
 
-const StyledForm = styled.form``
+const StyledForm = styled.form``;
 
 const Input = styled.div`
   display: flex;
   flex-flow: column;
   text-align: left;
-`
+`;
 
 export default Form;

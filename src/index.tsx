@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { createGlobalStyle } from 'styled-components'
+import React from "react";
+import ReactDOM from "react-dom";
+import { createGlobalStyle } from "styled-components";
+
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,14 +19,14 @@ const GlobalStyle = createGlobalStyle`
 		font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 			monospace;
 	}
-`
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-		<GlobalStyle />
+    <GlobalStyle />
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
