@@ -1,19 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 import styled from 'styled-components'
+import CraigsListForm  from './components/craigsListForm';
 
-const Button = styled.button``
+const App: React.FC = () => {
+	const [formState, setFormState] = useState({});
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Button>Click me</Button>
-      </header>
-    </div>
+    <AppContainer>
+			<CraigsListForm formState={formState} setFormState={setFormState} />
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: #282c34;
+`
 
 export default App;
