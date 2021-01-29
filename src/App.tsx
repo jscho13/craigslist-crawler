@@ -17,10 +17,10 @@ const App: React.FC = () => {
   const [formState, setFormState] = useState({});
 
   return (
-    <AppContainer>
-      <CraigsListForm formState={formState} setFormState={setFormState} />
-      <Listings formState={formState} />
-    </AppContainer>
+          <AppContainer>
+            <CraigsListForm formState={formState} setFormState={setFormState} />
+            <Listings formState={formState} />
+          </AppContainer>
   );
 };
 
