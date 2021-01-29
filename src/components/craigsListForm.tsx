@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-
-type GenericObject = { [key: string]: any };
-
-type FormProps = {
-  formState: GenericObject;
-  setFormState: (obj: GenericObject) => void;
-}
+import { FormProps } from './interface.d'
 
 const Form = ({ ...props }: FormProps) => {
   const {

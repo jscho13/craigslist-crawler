@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import CraigsListForm  from './components/craigsListForm';
+import CraigsListForm  from './components/CraigsListForm';
+import Listings from './components/Listings';
 
 const App: React.FC = () => {
+//   useEffect(() => {
+//     fetch('https://newyork.craigslist.org/d/computer-gigs/search/cpg')
+//       .then(response => {
+//         return response.text();
+//       }).then(data => {
+//         console.log(data);
+//       });
+//   });
+
 	const [formState, setFormState] = useState({});
 
   return (
     <AppContainer>
 			<CraigsListForm formState={formState} setFormState={setFormState} />
+      <Listings formState={formState} />
     </AppContainer>
   );
 }
