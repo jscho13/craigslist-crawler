@@ -16,7 +16,7 @@ const App: React.FC = () => {
   };
 
   const [formState, setFormState] = useState<GenericObject>(formStateDefault);
-  const [listData, setListData] = useState<GenericObject>({});
+  const [listData, setListData] = useState({});
 
   return (
     <AppContainer>
@@ -27,7 +27,7 @@ const App: React.FC = () => {
         setListData={setListData}
       />
       <ListingsContainer>
-        <Listings listData={listData} />
+        <Listings listData={listData} setListData={setListData} />
       </ListingsContainer>
     </AppContainer>
   );

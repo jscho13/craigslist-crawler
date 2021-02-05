@@ -56,7 +56,7 @@ const Form = ({ ...props }: FormProps) => {
 
     try {
       // loop through urls and make request
-      // experiment here with object.keys or promise.all
+      // experiment here with promise.all
       // it looks like you can't set state multiple times in a loop it gets weirded out
       const urls = generateUrls(formState);
       let newData: GenericObject = {};
