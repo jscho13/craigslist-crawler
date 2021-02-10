@@ -4,19 +4,19 @@ import styled from "styled-components";
 import CraigsListForm from "./components/CraigsListForm";
 import Listings from "./components/Listings";
 
-import { GenericObject } from "./utils/interface.d";
+import { FetchForm, ListItem } from "./utils/interface.d";
 
 const App: React.FC = () => {
   const formStateDefault = {
     limit: 10,
     nyc: true,
-    bos: false,
+    bos: true,
     writing: true,
     computer: true,
   };
 
-  const [formState, setFormState] = useState<GenericObject>(formStateDefault);
-  const [listData, setListData] = useState({});
+  const [formState, setFormState] = useState<FetchForm>(formStateDefault);
+  const [listData, setListData] = useState<ListItem[][]>([[]]);
 
   return (
     <AppContainer>

@@ -10,7 +10,7 @@ export const GIGS = {
 
 export const ALIAS = {
   bos: "Boston",
-  nyc: "New York City",
-  writing: "Writing Gigs",
-  computer: "Computer Gigs",
+  nyc: "NYC",
+  writing: "Writing",
+  computer: "Computer",
 };

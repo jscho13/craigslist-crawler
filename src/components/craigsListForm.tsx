@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import $ from "jquery";
 
-import { FormProps, GenericObject } from "../utils/interface.d";
+import {
+  FetchForm,
+  FormProps,
+  GenericObject,
+  ListItem,
+} from "../utils/interface.d";
 import { CITIES, GIGS, ALIAS } from "../utils/constants";
 
 // create urls
-const generateUrls = (formState: GenericObject) => {
+const generateUrls = (formState: FetchForm) => {
   let urls: GenericObject = {};
 
   if (formState.nyc) {
@@ -41,7 +46,7 @@ const generateUrls = (formState: GenericObject) => {
 };
 
 const Form = ({ ...props }: FormProps) => {
-  const { formState, setFormState, listData, setListData } = props;
+  const { formState, setFormState, setListData } = props;
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
@@ -52,14 +57,14 @@ const Form = ({ ...props }: FormProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setListData({});
+    setListData([]);
 
+    // really hate this part. is way to make concurrent fetch requests functionally?
     try {
       // loop through urls and make request
-      // experiment here with promise.all
       // it looks like you can't set state multiple times in a loop it gets weirded out
       const urls = generateUrls(formState);
-      let newData: GenericObject = {};
+      let newData: ListItem[][] = [];
 
       for (let title in urls) {
         let url = urls[title];
@@ -69,17 +74,17 @@ const Form = ({ ...props }: FormProps) => {
         const searchId = title.includes("Writing")
           ? "sortable-results"
           : "search-results";
-        const searchList = $(html).find(`#${searchId} .result-title`);
+        const resultRow = $(html).find(`#${searchId} .result-info`);
 
         let list = [];
         for (let i = 0; i < formState.limit; i++) {
-          const text = searchList[i].innerHTML;
-          const link = searchList[i].toString();
+          const date = resultRow[i].children[1].innerHTML;
           const key = i;
-          list[i] = { link, text, key };
+          const link = resultRow[i].children[2].children[0].toString();
+          const text = resultRow[i].children[2].children[0].innerHTML;
+          list[i] = { date, key, link, text, title };
         }
-
-        newData[title] = list;
+        newData.push(list.slice());
       }
 
       setListData(newData);
@@ -88,7 +93,6 @@ const Form = ({ ...props }: FormProps) => {
     }
   };
 
-  // use hook way https://dev.to/damcosset/refactor-a-form-with-react-hooks-and-usestate-1lfa
   return (
     // onSubmit also covers input by "enter" which is better
     // onClick on button only covers "clicking"

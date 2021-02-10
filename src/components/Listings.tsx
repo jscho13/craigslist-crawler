@@ -1,21 +1,16 @@
 import React from "react";
 import Listing from "./Listing";
-import { GenericObject } from "../utils/interface.d";
+import { ListingsProps, ListItem } from "../utils/interface.d";
 import styled from "styled-components";
 
-export type ListingsProps = {
-  listData: GenericObject;
-  setListData: (value: GenericObject) => void;
-};
-
 const Listings = ({ listData, setListData }: ListingsProps) => {
-  const listItems = Object.keys(listData).map((key) => {
+  const listItems = listData.map((row: ListItem[], idx: number) => {
     return (
       <Listing
-        key={key}
-        title={key}
-        setListData={setListData}
+        key={idx}
+        rowIdx={idx}
         listData={listData}
+        setListData={setListData}
       />
     );
   });
